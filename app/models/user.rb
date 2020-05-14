@@ -35,7 +35,9 @@ class User < ApplicationRecord
   end
   
   def favorite(micropost)
-    self.favorites.find_or_create_by(micropost_id: micropost.id)
+    unless self == other_user
+      self.favorites.find_or_create_by(micropost_id: micropost.id)
+    end
   end
   
   def unfavorite(micropost)
